@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* --rotateSlider:0deg; */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,4 +19,33 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+@layer utilities{
+  .radial-gradient{
+    @apply bg-[radial-gradient(circle,_var(--tw-gradient-stops))]
+  }
+  .flex-center{
+@apply flex justify-center items-center;
+  }
+  .Card{
+    @apply bg-gray-300 w-[300px] h-[400px] cursor-pointer;
+    clip-path: path('M 0 0 L 300 0 A 1 5 0 0 0 300 0 L 300 400 L 0 400 ');
+  }
+  .Card:hover{
+    @apply bg-gray-400 transition-transform duration-1000;
+    animation: morph 2s cubic-bezier(0.175, 0.885, 0.32, 1)  forwards;
+  } 
+  .mask{
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, #000 55%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, #000 55%);
+  }
+}
+
+@keyframes morph{
+  
+  to{
+    clip-path: path('M 0 0 L 300 0 A 1 5 0 0 0 300 0 L 00 00 L 0 400 ');
+  }
 }
