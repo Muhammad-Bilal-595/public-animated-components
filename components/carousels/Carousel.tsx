@@ -65,7 +65,7 @@ const Carousel = () => {
   //   sliderData.slice(startSlice, endSlice)
   // );
 
-  // auto rotate
+  // auto rotate after every 5s
   setTimeout(() => {
     if (!stopAutoRotate||isClicked) return;
 
@@ -79,7 +79,7 @@ const Carousel = () => {
     }
     if(sliderIndex == sliderLength - 1)setAlternate(false);
     if(sliderIndex == 0)setAlternate(true);
-  }, 3000);
+  }, 5000);
 
   // handle click both prev and next
   const handleClick = ({
@@ -123,7 +123,6 @@ const Carousel = () => {
       <div className="flex-center flex-col bg-blue-500 md:w-[100vw] max-md:min-h-[65vh] min-h-[70vh]">
         <div className="">
           <Image
-            // data-img={"/public/images/avatar1.png"}
             src={sliderData[sliderIndex].img}
             alt=""
             className="w-[100px] h-auto bg-fuchsia-200 rounded-full"
@@ -162,10 +161,11 @@ const Carousel = () => {
                     }}
                   >
                     <Image
-                      fill
+                      
                       src={sliderData[index].img}
                       alt=""
-                      className="object-contain "
+                      priority
+                      className="object-contain w-[50px] h-auto"
                     />
                   </div>
                 </div>
@@ -186,9 +186,9 @@ const Carousel = () => {
             } text-black  `}
             onClick={() => handleClick({ buttonClicked: "prev" })}
           >
-            {rotate + "-"}Prev{startSlice}
+            Prev
           </button>
-          <button onClick={()=>setStopAutoRotate(prev=>!prev)} className="px-4 py-2 rounded-md bg-slate-500">{stopAutoRotate?"auto":"stop"}</button>
+          <button onClick={()=>setStopAutoRotate(prev=>!prev)} className="px-4 py-2 rounded-md bg-slate-500">{stopAutoRotate?"stop":"Auto"}</button>
           <button
             id="next"
             type="button"
@@ -200,7 +200,7 @@ const Carousel = () => {
             } text-white  `}
             onClick={() => handleClick({ buttonClicked: "next" })}
           >
-            {sliderIndex + "->"}Next{endSlice}
+           Next
           </button>
         </div>
       </div>
