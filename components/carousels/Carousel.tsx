@@ -11,7 +11,7 @@ interface sliderProps {
 
 const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
   // number of wheels
-  const numberOfWheels = numberOfWheelsInSlider>2?numberOfWheelsInSlider:5;
+  const numberOfWheels = numberOfWheelsInSlider>2&&numberOfWheelsInSlider<=sliderData.length?numberOfWheelsInSlider:5;
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [rotate, setRotate] = useState<string>("0");
   const [isClicked, setIsClicked] = useState<boolean>(false);

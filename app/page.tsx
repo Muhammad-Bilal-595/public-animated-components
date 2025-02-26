@@ -1,7 +1,7 @@
 import Carousel from "@/components/carousels/Carousel";
 import { file, globe, img1, img2, img3 } from "@/public/images";
 
-// data
+// slider data
 const sliderData = [
   {
     img: img1,
@@ -55,7 +55,10 @@ const sliderData = [
 export default function Home() {
   return (
     <main className="flex-center ">
-      <Carousel sliderData={sliderData}  />
+      <Carousel sliderData={sliderData} 
+      // you can also pass the number of wheels like 
+      // numberOfWheelsInSlider={5}
+      />
     </main>
   );
 }
