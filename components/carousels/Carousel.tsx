@@ -13,7 +13,7 @@ const Carousel = ({ delayInAutoRotation=5000,sliderData, numberOfWheelsInSlider 
   const numberOfWheels =
     numberOfWheelsInSlider > 2 && numberOfWheelsInSlider <= sliderData.length
       ? numberOfWheelsInSlider
-      : 5;
+      : sliderData.length<5?sliderData.length:5;
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [rotate, setRotate] = useState<string>("0");
   const [isClicked, setIsClicked] = useState<boolean>(false);
