@@ -1,6 +1,6 @@
 "use client";
-import Image  from "next/image";
-import { useState } from "react";
+import Image from "next/image";
+import {  useEffect, useState } from "react";
 import { file, globe, img1, img2, img3 } from "@/public/images";
 
 // type slider = {
@@ -59,27 +59,33 @@ const Carousel = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [startSlice, setStartSlice] = useState<number>(0);
   const [endSlice, setEndSlice] = useState<number>(5);
-  const [stopAutoRotate, setStopAutoRotate] = useState<boolean>(true);
+  const [stopAutoRotate, setStopAutoRotate] = useState<boolean>(false);
   const [alternate, setAlternate] = useState<boolean>(true);
+  const sliderLength = sliderData.length;
+  const numberOfWheels = 5;
+  const distanceDegree = 360 / numberOfWheels;
   // const [currentSliderData, setCurrentSliderData] = useState<slider[]>(
   //   sliderData.slice(startSlice, endSlice)
   // );
 
   // auto rotate after every 5s
-  setTimeout(() => {
+  useEffect(() => {
     if (!stopAutoRotate||isClicked) return;
-
-    const n = document.getElementById("next");
-    const p = document.getElementById("prev");
-    if ( sliderIndex != sliderLength - 1&&alternate) {
-      console.log("yes..");
-      n?.click();
-    }else if(sliderIndex!=0){
-      p?.click();
-    }
-    if(sliderIndex == sliderLength - 1)setAlternate(false);
-    if(sliderIndex == 0)setAlternate(true);
-  }, 5000);
+    const t = setTimeout(() => {
+      const n = document.getElementById("next");
+      const p = document.getElementById("prev");
+      if (sliderIndex != sliderLength - 1 && alternate) {
+        n?.click();
+      } else if (sliderIndex != 0) {
+        p?.click();
+      }
+      if (sliderIndex == sliderLength - 1) setAlternate(false);
+      if (sliderIndex == 0) setAlternate(true);
+    }, 5000, sliderIndex);
+    console.log("auto rotate",t);
+    return () => clearTimeout(t);
+  }, [stopAutoRotate,alternate,sliderIndex,sliderLength,isClicked]);
+  
 
   // handle click both prev and next
   const handleClick = ({
@@ -87,6 +93,8 @@ const Carousel = () => {
   }: {
     buttonClicked: "prev" | "next";
   }) => {
+   
+
     const typeOfClick = buttonClicked === "prev" ? -1 : 1;
     let s = startSlice + typeOfClick;
     let e = endSlice + typeOfClick;
@@ -115,9 +123,7 @@ const Carousel = () => {
     }, 1000);
   };
 
-  const sliderLength = sliderData.length;
-  const numberOfWheels = 5;
-  const distanceDegree = 360 / numberOfWheels;
+
   return (
     <section className="flex  max-lg:flex-col w-full h-screen transform transition-transform duration-500 delay-150 max-w-[1200px] overflow-hidden">
       <div className="flex-center flex-col bg-blue-500 md:w-[100vw] max-md:min-h-[65vh] min-h-[70vh]">
@@ -161,10 +167,8 @@ const Carousel = () => {
                     }}
                   >
                     <Image
-                      
                       src={sliderData[index].img}
                       alt=""
-                      priority
                       className="object-contain w-[50px] h-auto"
                     />
                   </div>
@@ -184,11 +188,20 @@ const Carousel = () => {
                 ? "bg-white/50 cursor-not-allowed"
                 : "bg-white"
             } text-black  `}
-            onClick={() => handleClick({ buttonClicked: "prev" })}
+            onClick={() => {setAlternate(false);
+              handleClick({ buttonClicked: "prev" })}}
           >
             Prev
           </button>
-          <button onClick={()=>setStopAutoRotate(prev=>!prev)} className="px-4 py-2 rounded-md bg-slate-500">{stopAutoRotate?"stop":"Auto"}</button>
+          <button
+            onClick={() => {
+              
+              setStopAutoRotate((prev) => !prev);
+            }}
+            className="px-4 py-2 rounded-md bg-slate-500"
+          >
+            {stopAutoRotate ? "stop" : "Auto"}
+          </button>
           <button
             id="next"
             type="button"
@@ -198,9 +211,12 @@ const Carousel = () => {
                 ? "bg-black/50 cursor-not-allowed"
                 : "bg-black"
             } text-white  `}
-            onClick={() => handleClick({ buttonClicked: "next" })}
+            onClick={() => {
+              setAlternate(true);
+              handleClick({ buttonClicked: "next" });
+            }}
           >
-           Next
+            Next
           </button>
         </div>
       </div>
