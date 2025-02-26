@@ -102,8 +102,8 @@ const Carousel = ({ delayInAutoRotation=5000,sliderData, numberOfWheelsInSlider 
               className={`transition-all ${
                 isClicked
                   ? checking
-                    ? " translate-y-[150%] "
-                    : "-translate-y-[150%] "
+                    ? " translate-y-[170%] "
+                    : "-translate-y-[170%] "
                   : " translate-y-0 "
               } `}
             >
