@@ -27,6 +27,7 @@ export default {
             objectPosition: "0px 0px",
           },
         },
+        
       },
       animation: {
         wheel: "wheel 1s ease-in forwards",

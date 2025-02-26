@@ -147,8 +147,14 @@ const Carousel = () => {
                 : "bg-black object-[0px_0px] "
             } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
-          <div className="flex-center text-black md:text-xl font-semibold bg-orange-200 lg:h-[10%] w-full">
-            <h3 className="">{sliderData[sliderIndex].name}</h3>{" "}
+          <div 
+          style={{
+            transformStyle:"preserve-3d",
+            perspective:"1000px"
+          }}
+           className="flex-center text-black md:text-xl font-semibold bg-orange-200/50 rounded-t-full lg:h-[10%] py-2 w-full transform transition-all duration-1000">
+            
+            <h3 className="animate-roate_X" >{sliderData[sliderIndex].name}</h3>
           </div>
         </div>
         <p className="w-full bg-stone-400 h-full text-sm max-md:p-2 p-10 text-justify max-h-[30%] overflow-auto">
