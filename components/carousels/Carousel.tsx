@@ -132,7 +132,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className={`Carousel--container `}>
+    <section className={`Carousel--container max-md:max-h-[95vh] h-full w-full`}>
       <div className="Information--container">
         <div className="w-full flex justify-end items-center flex-col lg:gap-8  max-lg:flex-center md:min-h-[60%] h-full bg-white px-10">
           <Image
