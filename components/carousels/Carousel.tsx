@@ -1,69 +1,17 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
-import { file, globe, img1, img2, img3 } from "@/public/images";
 
-// type slider = {
-//   img: StaticImageData;
-//   name: string;
-//   description: string;
-// };
+interface sliderProps {
+  sliderData: { img: StaticImageData; name: string; description: string }[];
+  numberOfWheelsInSlider?: number;
+}
 
-// data
-const sliderData = [
-  {
-    img: img1,
-    name: "Earl Moore",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.1",
-  },
-  {
-    img: img2,
-    name: "Caroline Underwood",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.2",
-  },
-  {
-    img: img3,
-    name: "Gertrude Haynes",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.3",
-  },
-  {
-    img: img1,
-    name: "Christine Robinson",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.4",
-  },
-  {
-    img: globe,
-    name: "Frederick Hansen",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.5",
-  },
-  {
-    img: file,
-    name: "Nancy Nunez",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.6",
-  },
-  {
-    img: img3,
-    name: "Frances Kelley",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.7",
-  },
-  {
-    img: img1,
-    name: "Hannah Webb",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.",
-  },
-];
 
-const Carousel = () => {
+
+const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
   // number of wheels
-  const numberOfWheels = 5;
+  const numberOfWheels = numberOfWheelsInSlider>2?numberOfWheelsInSlider:5;
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [rotate, setRotate] = useState<string>("0");
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -132,7 +80,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className={`Carousel--container  h-full w-full`}>
+    <section className={`Carousel--container  `}>
       <div className="Information--container">
         <div className="Information--Image__container">
           <Image
