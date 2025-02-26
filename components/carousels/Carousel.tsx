@@ -5,13 +5,15 @@ import { useEffect, useState } from "react";
 interface sliderProps {
   sliderData: { img: StaticImageData; name: string; description: string }[];
   numberOfWheelsInSlider?: number;
+  delayInAutoRotation?: 5000 | 1500 | 2000 | 2500 | 3000 | 4000 | 6000 | 60000;
 }
 
-
-
-const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
+const Carousel = ({ delayInAutoRotation=5000,sliderData, numberOfWheelsInSlider = 0 }: sliderProps) => {
   // number of wheels
-  const numberOfWheels = numberOfWheelsInSlider>2&&numberOfWheelsInSlider<=sliderData.length?numberOfWheelsInSlider:5;
+  const numberOfWheels =
+    numberOfWheelsInSlider > 2 && numberOfWheelsInSlider <= sliderData.length
+      ? numberOfWheelsInSlider
+      : 5;
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [rotate, setRotate] = useState<string>("0");
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -38,11 +40,11 @@ const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
         if (sliderIndex == sliderLength - 1) setAlternate(false);
         if (sliderIndex == 0) setAlternate(true);
       },
-      5000, //5000->5s , 500->0.5s ,1000-> 1s
+      delayInAutoRotation, //5000->5s , 500->0.5s ,1000-> 1s
       sliderIndex
     );
     return () => clearTimeout(t);
-  }, [stopAutoRotate, alternate, sliderIndex, sliderLength, isClicked]);
+  }, [stopAutoRotate, alternate, sliderIndex, sliderLength, isClicked,delayInAutoRotation]);
 
   // handle click both prev and next
   const handleClick = ({
@@ -90,8 +92,8 @@ const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
             className={`w-[250px] md:w-[350px] h-[250px] md:h-[350px] ${
               isClicked
                 ? checking
-                  ? "object-[-300px_60px] md:object-[-350px_60px] blur-[5px] "
-                  : "object-[300px_100px] md:object-[350px_60px] blur-[5px]"
+                  ? "object-[-300px_60px] md:object-[-350px_60px] blur-[30px] "
+                  : "object-[300px_100px] md:object-[350px_60px] blur-[30px]"
                 : " object-cover "
             } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
