@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { file, globe, img1, img2, img3 } from "@/public/images";
 
 // type slider = {
@@ -70,22 +70,24 @@ const Carousel = () => {
 
   // auto rotate after every 5s
   useEffect(() => {
-    if (!stopAutoRotate||isClicked) return;
-    const t = setTimeout(() => {
-      const n = document.getElementById("next");
-      const p = document.getElementById("prev");
-      if (sliderIndex != sliderLength - 1 && alternate) {
-        n?.click();
-      } else if (sliderIndex != 0) {
-        p?.click();
-      }
-      if (sliderIndex == sliderLength - 1) setAlternate(false);
-      if (sliderIndex == 0) setAlternate(true);
-    }, 5000, sliderIndex);
-    console.log("auto rotate",t);
+    if (!stopAutoRotate || isClicked) return;
+    const t = setTimeout(
+      () => {
+        const n = document.getElementById("next");
+        const p = document.getElementById("prev");
+        if (sliderIndex != sliderLength - 1 && alternate) {
+          n?.click();
+        } else if (sliderIndex != 0) {
+          p?.click();
+        }
+        if (sliderIndex == sliderLength - 1) setAlternate(false);
+        if (sliderIndex == 0) setAlternate(true);
+      },
+      5000,
+      sliderIndex
+    );
     return () => clearTimeout(t);
-  }, [stopAutoRotate,alternate,sliderIndex,sliderLength,isClicked]);
-  
+  }, [stopAutoRotate, alternate, sliderIndex, sliderLength, isClicked]);
 
   // handle click both prev and next
   const handleClick = ({
@@ -93,8 +95,6 @@ const Carousel = () => {
   }: {
     buttonClicked: "prev" | "next";
   }) => {
-   
-
     const typeOfClick = buttonClicked === "prev" ? -1 : 1;
     let s = startSlice + typeOfClick;
     let e = endSlice + typeOfClick;
@@ -123,10 +123,9 @@ const Carousel = () => {
     }, 1000);
   };
 
-
   return (
-    <section className="flex  max-lg:flex-col w-full h-screen transform transition-transform duration-500 delay-150 max-w-[1200px] overflow-hidden">
-      <div className="flex-center flex-col bg-blue-500 md:w-[100vw] max-md:min-h-[65vh] min-h-[70vh]">
+    <section className="Carousel--container">
+      <div className="Information--container">
         <div className="">
           <Image
             src={sliderData[sliderIndex].img}
@@ -137,29 +136,31 @@ const Carousel = () => {
         </div>
         <div>{sliderData[sliderIndex].description}</div>
       </div>
-      <div className="relative  flex justify-end items-center gap-10 h-full w-full bg-slate-50/10  flex-col  transform transition-all duration-500 delay-150 ">
+      <div className="Carousel_Controler--container ">
         {/* wheel container */}
         <div
-          className=" absolute lg:bottom-[10%] max-lg:top-[5%]  max-md:top-[10%]  z-10 flex-center   w-[300px] h-[300px] radial-gradient from-transparent to-black  text-white  rounded-full blur-[0.5px] "
+          className="Wheel--container "
           style={{
             transform: `rotate(${rotate}deg)`,
           }}
         >
-          {/* check */}
+          {" "}
+          {/* wheels center circle*/}
           <div className="absolute w-[20px] h-[20px] rounded-full radial-gradient from-white to-black to-[30%]" />
+          {/*End of wheels center sircle*/}
           {/* wheel */}
           {sliderData.map((data, index) => {
             if (startSlice <= index && endSlice > index)
               return (
                 <div
                   key={data.name + index}
-                  className="absolute -z-10 top-[50px]  w-[3px] h-[100px] bg-black to-[50%]  origin-bottom "
+                  className="Wheels--info"
                   style={{
                     transform: `rotate(-${(index % 5) * distanceDegree}deg) `,
                   }}
                 >
                   <div
-                    className="relative -left-[24px] -top-[30px] w-[50px] h-[50px] bg-white rounded-full "
+                    className="Wheel--image"
                     style={{
                       transform: `rotate(calc(${
                         index * distanceDegree - parseInt(rotate)
@@ -178,27 +179,28 @@ const Carousel = () => {
         </div>
 
         {/* button */}
-        <div className="relative flex-center z-30 bg-white/50 backdrop-blur-sm rounded-lg  lg:h-[30%]  max-lg:h-[45%]  w-full gap-10">
+        <div className="btn--container">
           <button
             id="prev"
             type="button"
             disabled={isClicked || sliderIndex == 0}
-            className={` px-4 py-2 rounded-md ${
+            className={` btn ${
               isClicked || sliderIndex == 0
                 ? "bg-white/50 cursor-not-allowed"
                 : "bg-white"
             } text-black  `}
-            onClick={() => {setAlternate(false);
-              handleClick({ buttonClicked: "prev" })}}
+            onClick={() => {
+              setAlternate(false);
+              handleClick({ buttonClicked: "prev" });
+            }}
           >
             Prev
           </button>
           <button
             onClick={() => {
-              
               setStopAutoRotate((prev) => !prev);
             }}
-            className="px-4 py-2 rounded-md bg-slate-500"
+            className="btn bg-slate-500"
           >
             {stopAutoRotate ? "stop" : "Auto"}
           </button>
@@ -206,7 +208,7 @@ const Carousel = () => {
             id="next"
             type="button"
             disabled={isClicked || sliderIndex === sliderLength - 1}
-            className={` px-4 py-2 rounded-md ${
+            className={` btn ${
               isClicked || sliderIndex === sliderLength - 1
                 ? "bg-black/50 cursor-not-allowed"
                 : "bg-black"
