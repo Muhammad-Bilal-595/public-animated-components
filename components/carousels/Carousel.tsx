@@ -69,7 +69,7 @@ const Carousel = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [startSlice, setStartSlice] = useState<number>(0);
   const [endSlice, setEndSlice] = useState<number>(numberOfWheels);
-  const [stopAutoRotate, setStopAutoRotate] = useState<boolean>(false);
+  const [stopAutoRotate, setStopAutoRotate] = useState<boolean>(true);
   const [alternate, setAlternate] = useState<boolean>(true);
   const sliderLength = sliderData.length;
   const distanceDegree = 360 / numberOfWheels;
@@ -134,7 +134,7 @@ const Carousel = () => {
   return (
     <section className={`Carousel--container  h-full w-full`}>
       <div className="Information--container">
-        <div className="w-full flex justify-end items-center flex-col lg:gap-8 gap-6   md:min-h-[60%] h-full bg-white px-10">
+        <div className="Information--Image__container">
           <Image
             id="image"
             src={sliderData[sliderIndex].img}
@@ -142,22 +142,22 @@ const Carousel = () => {
             className={`w-[250px] md:w-[350px] h-auto ${
               isClicked
                 ? checking
-                  ? "object-[-300px_60px] blur-[10px]  "
-                  : "object-[300px_100px] blur-[10px] "
+                  ? "object-[-300px_60px] md:object-[-350px_60px]  "
+                  : "object-[300px_100px] md:object-[350px_60px] "
                 : "bg-black object-[0px_0px] "
             } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
-          <div 
-          style={{
-            transformStyle:"preserve-3d",
-            perspective:"1000px"
-          }}
-           className="flex-center text-black md:text-xl font-semibold bg-orange-200/50 rounded-t-full lg:h-[10%] py-2 w-full transform transition-all duration-1000">
-            
-            <h3 className="animate-roate_X" >{sliderData[sliderIndex].name}</h3>
+          <div className="Information--Name">
+            <h3 className={`transition-all ${
+              isClicked
+                ? checking
+                  ? " translate-y-[150%] "
+                  : "-translate-y-[150%] " 
+                : " translate-y-0 "
+            } `}>{sliderData[sliderIndex].name}</h3>
           </div>
         </div>
-        <p className="w-full bg-stone-400 h-full text-sm max-md:p-2 p-10 text-justify max-h-[30%] overflow-auto">
+        <p className="Information--Description">
           {sliderData[sliderIndex].description}
         </p>
       </div>
