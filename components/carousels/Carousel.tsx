@@ -54,19 +54,17 @@ const sliderData = [
 ];
 
 const Carousel = () => {
+  // number of wheels
+  const numberOfWheels = 5;
   const [sliderIndex, setSliderIndex] = useState<number>(0);
   const [rotate, setRotate] = useState<string>("0");
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [startSlice, setStartSlice] = useState<number>(0);
-  const [endSlice, setEndSlice] = useState<number>(5);
+  const [endSlice, setEndSlice] = useState<number>(numberOfWheels);
   const [stopAutoRotate, setStopAutoRotate] = useState<boolean>(false);
   const [alternate, setAlternate] = useState<boolean>(true);
   const sliderLength = sliderData.length;
-  const numberOfWheels = 5;
   const distanceDegree = 360 / numberOfWheels;
-  // const [currentSliderData, setCurrentSliderData] = useState<slider[]>(
-  //   sliderData.slice(startSlice, endSlice)
-  // );
 
   // auto rotate after every 5s
   useEffect(() => {
@@ -83,7 +81,7 @@ const Carousel = () => {
         if (sliderIndex == sliderLength - 1) setAlternate(false);
         if (sliderIndex == 0) setAlternate(true);
       },
-      5000,
+      5000, //5000->5s , 500->0.5s ,1000-> 1s
       sliderIndex
     );
     return () => clearTimeout(t);
@@ -112,10 +110,9 @@ const Carousel = () => {
       // to enable the button again
       setIsClicked(false);
       // to change the index of the slider
-      // if (e >= sliderLength) {
+
       setSliderIndex((prev) => (prev + typeOfClick) % sliderLength);
-      // }
-      // current slide data
+      // to change the slice of the
       if (!(endSlice >= sliderLength) || buttonClicked == "prev") {
         setStartSlice(s);
         if (e - s == numberOfWheels) setEndSlice(e);
@@ -152,13 +149,17 @@ const Carousel = () => {
           {sliderData.map((data, index) => {
             if (startSlice <= index && endSlice > index)
               return (
+                // wheel info
                 <div
                   key={data.name + index}
                   className="Wheels--info"
                   style={{
-                    transform: `rotate(-${(index % 5) * distanceDegree}deg) `,
+                    transform: `rotate(-${
+                      (index % numberOfWheels) * distanceDegree
+                    }deg) `,
                   }}
                 >
+                  {/* image container */}
                   <div
                     className="Wheel--image"
                     style={{
@@ -173,13 +174,16 @@ const Carousel = () => {
                       className="object-contain w-[50px] h-auto"
                     />
                   </div>
+                  {/*End of image container */}
                 </div>
+                //End of wheel info
               );
           })}
         </div>
 
-        {/* button */}
+        {/* buttons Container */}
         <div className="btn--container">
+          {/* previous Button */}
           <button
             id="prev"
             type="button"
@@ -196,6 +200,8 @@ const Carousel = () => {
           >
             Prev
           </button>
+          {/*End of previous Button */}
+          {/* To start and stop auto Rotate button */}
           <button
             onClick={() => {
               setStopAutoRotate((prev) => !prev);
@@ -204,6 +210,8 @@ const Carousel = () => {
           >
             {stopAutoRotate ? "stop" : "Auto"}
           </button>
+          {/* End of auto Rotate button */}
+          {/* Next button */}
           <button
             id="next"
             type="button"
@@ -220,7 +228,9 @@ const Carousel = () => {
           >
             Next
           </button>
+          {/*End of Next button */}
         </div>
+        {/*End of buttons Container */}
       </div>
     </section>
   );
