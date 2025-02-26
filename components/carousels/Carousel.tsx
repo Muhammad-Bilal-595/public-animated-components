@@ -92,8 +92,8 @@ const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
                 ? checking
                   ? "object-[-300px_60px] md:object-[-350px_60px] blur-[5px] "
                   : "object-[300px_100px] md:object-[350px_60px] blur-[5px]"
-                : "bg-slate-400 object-cover "
-            }  ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
+                : " object-cover "
+            } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
           <div className="Information--Name">
             <h3
