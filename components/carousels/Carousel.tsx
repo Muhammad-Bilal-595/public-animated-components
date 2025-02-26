@@ -121,13 +121,13 @@ const Carousel = () => {
   };
 
   return (
-    <section className="Carousel--container">
+    <section className={`Carousel--container `}>
       <div className="Information--container">
         <div className="">
           <Image
             src={sliderData[sliderIndex].img}
             alt=""
-            className="w-[100px] h-auto bg-fuchsia-200 rounded-full"
+            className={`w-[100px] h-auto ${isClicked ? "object-[100px_60px]" : "bg-black object-[0px_0px]"} transition-all duration-500  rounded-full p-2 flex-center`}
           />
           <div>Name:{sliderData[sliderIndex].name}</div>
         </div>
@@ -206,7 +206,7 @@ const Carousel = () => {
             onClick={() => {
               setStopAutoRotate((prev) => !prev);
             }}
-            className="btn bg-slate-500"
+            className="btn radial-gradient from-black from-[10%]  to-white"
           >
             {stopAutoRotate ? "stop" : "Auto"}
           </button>

@@ -46,7 +46,7 @@ body {
   }
 
   .Information--container {
-    @apply flex-center flex-col bg-blue-500 md:w-[100vw] max-md:min-h-[65vh] min-h-[70vh];
+    @apply flex-center flex-col  md:w-[100vw] max-md:min-h-[65vh] min-h-[70vh];
   }
 
   .Carousel_Controler--container {
