@@ -61,7 +61,7 @@ export default function Home() {
         // you can also pass the number of wheels like but
         // numberOfWheelsInSlider={5}
         // you can also pass the delay in auto rotation like now it will rotate after each passed 1.5s
-        delayInAutoRotation={1500}
+        // delayInAutoRotation={1500}
       />
     </main>
   );
