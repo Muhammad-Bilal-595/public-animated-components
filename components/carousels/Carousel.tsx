@@ -148,13 +148,17 @@ const Carousel = () => {
             } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
           <div className="Information--Name">
-            <h3 className={`transition-all ${
-              isClicked
-                ? checking
-                  ? " translate-y-[150%] "
-                  : "-translate-y-[150%] " 
-                : " translate-y-0 "
-            } `}>{sliderData[sliderIndex].name}</h3>
+            <h3
+              className={`transition-all ${
+                isClicked
+                  ? checking
+                    ? " translate-y-[150%] "
+                    : "-translate-y-[150%] "
+                  : " translate-y-0 "
+              } `}
+            >
+              {sliderData[sliderIndex].name}
+            </h3>
           </div>
         </div>
         <p className="Information--Description">
@@ -234,7 +238,7 @@ const Carousel = () => {
             onClick={() => {
               setStopAutoRotate((prev) => !prev);
             }}
-            className="btn radial-gradient from-black from-[10%]  to-white"
+            className="btn radial-gradient text-black from-white from-[0%]  to-white/10"
           >
             {stopAutoRotate ? "stop" : "Auto"}
           </button>
@@ -259,6 +263,18 @@ const Carousel = () => {
           {/*End of Next button */}
         </div>
         {/*End of buttons Container */}
+        {/* slider info */}
+        <div className="Slider--info__1">{sliderIndex + 1} </div>
+        <div className="Slider--info__2">{sliderLength}</div>
+        <div className="Slider--progress">
+          <div
+            style={{
+              width: `${((sliderIndex + 1) / sliderLength) * 100}%`,
+            }}
+            className={`h-1  bg-orange-300 transition-all duration-1000`}
+          />
+        </div>
+        {/* end of slider info /progress */}
       </div>
     </section>
   );
