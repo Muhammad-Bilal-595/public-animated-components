@@ -87,13 +87,13 @@ const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
             id="image"
             src={sliderData[sliderIndex].img}
             alt=""
-            className={`w-[250px] md:w-[350px] h-auto ${
+            className={`w-[250px] md:w-[350px] h-[250px] md:h-[350px] ${
               isClicked
                 ? checking
-                  ? "object-[-300px_60px] md:object-[-350px_60px]  "
-                  : "object-[300px_100px] md:object-[350px_60px] "
-                : "bg-black object-[0px_0px] "
-            } bg-slate-400 ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
+                  ? "object-[-300px_60px] md:object-[-350px_60px] blur-[5px] "
+                  : "object-[300px_100px] md:object-[350px_60px] blur-[5px]"
+                : "bg-slate-400 object-cover "
+            }  ring-black/50 ring-4 blur-0  transition-all duration-500  rounded-full p-2 flex-center `}
           />
           <div className="Information--Name">
             <h3
@@ -151,7 +151,7 @@ const Carousel = ({sliderData,numberOfWheelsInSlider=0}:sliderProps) => {
                     <Image
                       src={sliderData[index].img}
                       alt=""
-                      className="object-contain w-[50px] h-auto"
+                      className=" w-[50px] h-[50px] object-cover rounded-full"
                     />
                   </div>
                   {/*End of image container */}

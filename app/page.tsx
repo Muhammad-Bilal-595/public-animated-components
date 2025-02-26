@@ -13,19 +13,19 @@ const sliderData = [
     img: img2,
     name: "Caroline Underwood",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.2",
+      "Duis vulputate orci ut lectus lacinia, nec bibendum nunc pharetra. Nulla ut ipsum id augue venenatis hendrerit. Sed eleifend fermentum nibh at pulvinar. Cras vehicula velit auctor molestie lobortis. Suspendisse vestibulum tincidunt nisl ut porta. Etiam eleifend congue vehicula. Donec convallis vel augue ac vestibulum. Nam ut lectus vel lectus auctor elementum eget sed quam. Aliquam at lacus iaculis, ultrices sem et, luctus tortor. Ut et erat nisl.2",
   },
   {
     img: img3,
     name: "Gertrude Haynes",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.3",
+      "Maecenas commodo finibus venenatis. Duis vitae laoreet lectus. Suspendisse vitae tincidunt mauris. Maecenas neque ipsum, dignissim eget quam blandit, gravida maximus velit. Aliquam non mi elit. Nulla bibendum erat ac sollicitudin blandit. Duis augue ligula, porta nec elit vel, placerat aliquet magna. Duis pulvinar massa eu neque tincidunt fringilla. Proin pharetra tellus sed mauris blandit eleifend.3",
   },
   {
     img: img1,
     name: "Christine Robinson",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.4",
+      "Suspendisse id nulla nec sem eleifend venenatis. Vivamus facilisis eleifend suscipit. Sed dui felis, aliquam quis nisi id, vulputate pellentesque quam. Phasellus consectetur diam turpis, sit amet placerat nunc vestibulum nec. Morbi iaculis interdum euismod. Maecenas fringilla porttitor purus, nec dapibus leo iaculis eget. Quisque vehicula, libero eget malesuada viverra, leo lectus condimentum ligula, at laoreet dui massa sed nulla. 4",
   },
   {
     img: globe,
@@ -37,7 +37,7 @@ const sliderData = [
     img: file,
     name: "Nancy Nunez",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.6",
+      "Suspendisse id nulla nec sem eleifend venenatis. Vivamus facilisis eleifend suscipit. Sed dui felis, aliquam quis nisi id, vulputate pellentesque quam. Phasellus consectetur diam turpis, sit amet placerat nunc vestibulum nec. Morbi iaculis interdum euismod. Maecenas fringilla porttitor purus, nec dapibus leo iaculis eget. Quisque vehicula, libero eget malesuada viverra, leo lectus condimentum ligula, at laoreet dui massa sed nulla.6",
   },
   {
     img: img3,
@@ -49,13 +49,13 @@ const sliderData = [
     img: img1,
     name: "Hannah Webb",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eleifend diam. Nunc enim diam, interdum nec dui sed, pretium cursus diam. Aliquam ac accumsan sem. Aenean egestas faucibus nisi, eu malesuada nibh euismod in. Morbi fermentum lobortis nibh, scelerisque sollicitudin odio auctor et. Nam ornare nec tellus vel rhoncus. Nulla ante urna, egestas eu quam et, commodo facilisis odio. Vestibulum id venenatis tortor, eu laoreet justo. Vivamus ut ligula ac magna commodo sagittis. Proin non nisi nec massa pretium eleifend.",
+      "Suspendisse id nulla nec sem eleifend venenatis. Vivamus facilisis eleifend suscipit. Sed dui felis, aliquam quis nisi id, vulputate pellentesque quam. Phasellus consectetur diam turpis, sit amet placerat nunc vestibulum nec. Morbi iaculis interdum euismod. Maecenas fringilla porttitor purus, nec dapibus leo iaculis eget. Quisque vehicula, libero eget malesuada viverra, leo lectus condimentum ligula, at laoreet dui massa sed nulla.8",
   },
 ];
 export default function Home() {
   return (
     <main className="flex-center ">
-      <Carousel sliderData={sliderData} numberOfWheelsInSlider={8} />
+      <Carousel sliderData={sliderData}  />
     </main>
   );
 }
